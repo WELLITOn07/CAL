@@ -40,6 +40,9 @@ function criaCalculadora () {
             let conta = this.display.value;
             try {
                 conta = eval(conta)
+                if (conta == Infinity) {
+                    conta = '0';
+                }
                 if(!conta) return;
                 this.display.value = String(conta);
             } catch (ev){
