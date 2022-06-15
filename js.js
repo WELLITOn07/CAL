@@ -17,29 +17,21 @@ function criaCalculadora () {
         eventosBtn() {
             document.addEventListener('click', e => {
                 const ev = e.target
-                if (ev.classList.contains('btn-num')) {
-                    this.mostraDisplay(ev.innerText);
-                }
-                if (ev.classList.contains('btn-AC')) {
-                    this.display.value = "";
-                }
-                if (ev.classList.contains('btn-C')) {
-                    this.display.value = this.display.value.slice(0, -1);
-                }
-                if (ev.classList.contains('btn-igual')) {
-                    this.conta();
-                }
+                if (ev.classList.contains('btn-num')) this.mostraDisplay(ev.innerText);
+                if (ev.classList.contains('btn-AC')) this.display.value = "";
+                if (ev.classList.contains('btn-C')) this.display.value = this.display.value.slice(0, -1) 
+                if (ev.classList.contains('btn-igual')) this.conta();
             });
         },
 
         mostraDisplay(valor) {
             this.display.value += valor;
+            this.display.focus();
         },
 
         conta() {
-            let conta = this.display.value;
             try {
-                conta = eval(conta)
+                conta = eval(this.display.value)
                 if (conta == Infinity) {
                     conta = '0';
                 }
@@ -48,6 +40,7 @@ function criaCalculadora () {
             } catch (ev){
                 this.display.value = "";
                 window.alert('Conta Inválida');
+                return
             }
         },
     };
